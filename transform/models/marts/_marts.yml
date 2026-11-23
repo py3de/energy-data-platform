@@ -58,3 +58,9 @@ models:
     columns:
       - name: delivery_day
         data_tests: [unique, not_null]
+      - name: peak_price_hour
+        description: >
+          Local hour (0-23, Europe/Berlin) with the highest day-ahead price that day.
+          Hours without a price are ignored; on a tie the earlier hour wins.
+        data_tests:
+          - value_between: {arguments: {min_value: 0, max_value: 23}}
