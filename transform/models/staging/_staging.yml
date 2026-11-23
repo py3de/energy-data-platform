@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: stg_smard__series
+    description: SMARD series, renamed, one row per series and hour.
+    data_tests:
+      - dbt_unique_combination:
+          arguments: {columns: [series_id, hour_utc]}
+  - name: stg_open_meteo__weather
+    description: Hourly weather per location in clear units.
+    data_tests:
+      - dbt_unique_combination:
+          arguments: {columns: [location, hour_utc]}
+    columns:
+      - name: shortwave_radiation_wm2
+        data_tests: [not_negative]
+      - name: wind_speed_100m_kmh
+        data_tests: [not_negative]

@@ -1,0 +1,7 @@
+energy_platform:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('EDP_DB_PATH', '../data/warehouse.duckdb') }}"
+      threads: 1

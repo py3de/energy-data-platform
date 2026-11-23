@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: int_energy__hourly
+    columns:
+      - name: hour_utc
+        data_tests: [unique, not_null]
+  - name: int_weather__germany_hourly
+    columns:
+      - name: hour_utc
+        data_tests: [unique, not_null]

@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw layer written by the Python ingestion (idempotent upserts, one row per key and hour).
+    loaded_at_field: _loaded_at
+    freshness:   # SMARD publishes generation data with up to a day of delay
+      warn_after: {count: 26, period: hour}
+      error_after: {count: 50, period: hour}
+    tables:
+      - name: smard_series
+        description: "Hourly SMARD series (Bundesnetzagentur | SMARD.de, CC BY 4.0), long format."
+        columns:
+          - name: series_id
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [day_ahead_price, solar_generation, wind_onshore_generation, wind_offshore_generation, grid_load]
+          - name: ts_utc
+            data_tests: [not_null]
+      - name: weather_hourly
+        description: "Hourly weather per location from Open-Meteo.com (CC BY 4.0)."
+        columns:
+          - name: location
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [hamburg, munich, frankfurt]
+          - name: ts_utc
+            data_tests: [not_null]
