@@ -10,3 +10,4 @@ __pycache__/
 .dagster/
 *.duckdb
 *.duckdb.wal
+.tmp_dagster_home_*/
