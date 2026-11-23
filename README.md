@@ -152,6 +152,21 @@ tests/                pytest, including the real dbt project
 - [ ] S3 + Apache Iceberg with AWS Glue, provisioned with Terraform
 - [ ] SCD Type 2 snapshot for slowly changing reference data
 
+## How I built this
+
+I built this project with **Claude (Anthropic's AI assistant) as a pair programmer**. Claude wrote most of
+the code; I set the direction, reviewed the work and am responsible for the result. Commits made together
+carry a `Co-Authored-By: Claude` line; commits without it are my own.
+
+**My part**
+- **Direction:** I wanted to show the reliability side of data engineering (incremental loads,
+  data quality, monitoring, recovery) rather than another notebook analysis, and chose the scope:
+  a production-style core first, an AI agent that diagnoses pipeline failures next.
+- **Review:** I reviewed the design before it was built (watermarks with a lookback window, validating
+  before writing, reconciliation between raw and fact) and the code afterwards.
+- **Verification:** the parsers are built against the real SMARD and Open-Meteo response formats (recorded in
+  `fixtures/`), and every failure scenario in the runbook can be reproduced with `edp chaos`.
+
 ## Data sources and licences
 
 - Electricity market data: **Bundesnetzagentur | SMARD.de**, licensed under CC BY 4.0.
