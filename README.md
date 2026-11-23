@@ -1,5 +1,7 @@
 # Energy Data Platform
 
+[![ci](https://github.com/py3de/energy-data-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/py3de/energy-data-platform/actions/workflows/ci.yml)
+
 **An incremental, tested data pipeline for the German electricity market:** day-ahead prices, solar and
 wind generation and grid load from SMARD (Bundesnetzagentur), joined with weather from Open-Meteo.
 Python ingestion into DuckDB, dbt for modelling and data quality, Dagster for orchestration.
